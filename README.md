@@ -2,8 +2,8 @@
 
 ## Running
 
-1. Follow the directions in the lab instructions to set up a Google Cloud Vision API account and ensure you are logged in
-1. `npm i`
+1. Follow the directions in the [lab instructions](https://github.com/CMU-17-214/f2025/blob/main/labs/lab09.md) to set up a Google Cloud Vision API account and ensure you are logged in
+1. `npm i` (shorthand for `npm install`)
 1. `npm run compile`
 1. `npm run start`
 
