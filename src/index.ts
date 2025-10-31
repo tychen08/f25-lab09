@@ -1,5 +1,7 @@
 import { ImageAnnotatorClient } from '@google-cloud/vision';
 
+// Google Cloud Vision API: analyze the content of images using Google’s machine learning models
+// letting you send images and receive AI-generated descriptions, labels, texts, or detected objects
 const client = new ImageAnnotatorClient();
 
 function detectFace(fileName: string) {
@@ -35,6 +37,8 @@ function main (fileNames: string[]): void {
         .then(([result]) => {
             let scores: number[] = [];
             const logos = result.logoAnnotations;
+            // ?. is used to check if logos is undefined or null (only process if it is not null/undefined)
+            // .forEach((logo) => { ... }) iterates over each logo in the logos array (logo -> input)
             logos?.forEach((logo) => {
                 if (logo.description)
                     console.log(`"${logo.description}" found in in file ${fileName}`);
