@@ -1,0 +1,2 @@
+Identify a reason why async/await is preferred to Promises:
+One reason people like async/await with Promises is that it makes the code look and run more like normal, step-by-step code. It’s also easier to read and understand than using lots of .then() calls.
