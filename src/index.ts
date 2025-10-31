@@ -57,11 +57,38 @@ function main (fileNames: string[]): void {
     });
 }
 
+async function detectFaceAsync(fileName: string) {
+    let result = (await client.logoDetection(fileName))[0];
+    let scores: number[] = [];
+    const logos = result.logoAnnotations;
+    logos?.forEach((logo) => {
+        if (logo.description)
+            console.log(`"${logo.description}" found in in file ${fileName}`);
+        if (logo.score)
+            scores.push(logo.score);
+    });
+    const avg = scores.reduce((a, b) => a + b) / scores.length;
+    console.log(`Average score for ${fileName}: ${avg}`);
+
+}
+
 // Implement the async version of the above here
 // Your version should not use .then and should use try/catch instead of .catch
 async function mainAsync(fileNames: string[]): Promise<void> {
-    console.error(new Error("mainAsync not implemented"));
+    // console.error(new Error("mainAsync not implemented"));
     // Your code here
+    for (const fileName of fileNames) {
+        console.log(`Running logo detection on ${fileName}`);
+        try{
+            await detectFaceAsync(fileName);
+        } catch (err: any) {
+            if (err.code === 'ENOENT')
+                console.error(`File ${fileName} not found`);
+            else if (err.code == 7)
+                console.error(err.details);
+        }
+    };
+
 }
 
 main([
